@@ -1,4 +1,4 @@
-/* Sketch to that shows how to read the pwm signal of a servo */
+/* This sketch shows how to read PWM signals for servos */
 
 // Create servo objects to generate signals
 #include <Servo.h>
