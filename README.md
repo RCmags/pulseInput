@@ -1,7 +1,12 @@
 # PulseInput
-This is a simple library for an interrupt based, non-blocking alternative to Arduino's [pulseIn](https://reference.arduino.cc/reference/cs/language/functions/advanced-io/pulsein/) function. It depends on the [PinChangeInterrupt](https://github.com/NicoHood/PinChangeInterrupt) library to measure the _on-time_ of digital signals. Consequently, this library is compatible with standard arduino boards (Uno, Nano, Mega, etc), ATTinys, and many other boards. Please see the documentation of PinChangeInterrupt to see if your board is supported.
+This is a simple library for an interrupt based, non-blocking alternative to Arduino's [pulseIn](https://reference.arduino.cc/reference/cs/language/functions/advanced-io/pulsein/) function. 
 
 # Example uses
-This library is well suited to read the signals from a RC receiver, or the output of an ultrasonic distance sensor. Since it uses interrupts to measure the , one can read the signals while executing other code in the main loop. 
+This library is well suited to read the signals of a RC receiver or the output of an ultrasonic distance sensor. Since it uses interrupts to measure the signals, one can read multiple signals without long delays in the main loop of a sketch.  
 
+# How it works
+A pin change interrupt is used to detect when a signal is rising or falling, and the _on-time_ of the signal is measured in microseconds. This time is stored and used as the "data" of the signal. Therefore, this library is only suited to decode PWM-like signals, where the time of the pulse-width determines the value of the signal.
+
+# Dependencies
+This library depends on the [PinChangeInterrupt](https://github.com/NicoHood/PinChangeInterrupt) library. As such, it is compatible with many arduinos (Uno, Nano, Mega, etc), digiSpark ATTiny boards, any many other boards. Please see the documentation of PinChangeInterrupt to see if your board is supported.
 
