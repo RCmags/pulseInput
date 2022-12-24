@@ -8,4 +8,3 @@ A pin change interrupt is used to detect when a signal is rising or falling, and
 
 # Dependencies
 This library depends on the [PinChangeInterrupt](https://github.com/NicoHood/PinChangeInterrupt) library, so it works with standard Arduinos (Uno, Nano, Mega, etc) and the digiSpark ATTinys boards. Please see the documentation of PinChangeInterrupt to see if your board is supported.
-
