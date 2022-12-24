@@ -6,7 +6,7 @@ Servo servo1;
 Servo servo2;
 
 // 1. Each signal must be read with an unsigned int
-#include "PulseInput.h"   
+#include <PulseInput.h>   
 volatile unsigned int input1;
 volatile unsigned int input2;
 

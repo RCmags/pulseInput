@@ -3,6 +3,7 @@
 #ifndef PulseInput_h
 #define PulseInput_h
 
+// Read signal at given pin 
 template<uint8_t PIN, volatile uint16_t* time_change>
 void attachPulseInput() {
   
@@ -22,10 +23,12 @@ void attachPulseInput() {
   attachPCINT(digitalPinToPCINT(PIN), interruptFunc, CHANGE);
 }
 
+// Stop pin from reading signal
 void detachPulseInput(uint8_t PIN) {
   detachPCINT( digitalPinToPCINT(PIN) );
 }
 
+// Macro for function-like notation
 #define attachPulseInput(pin, input)    attachPulseInput<pin, &input>()
 
 #endif
