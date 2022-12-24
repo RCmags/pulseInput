@@ -7,6 +7,8 @@ This library is well suited to read the signals of a RC receiver or the output o
 # How it works
 A pin change interrupt is used to detect when a signal is rising or falling, and the _on-time_ of the signal is measured in microseconds. This time is stored and used as the "data" of the signal. Therefore, this library is only suited to decode PWM-like signals, where the time of the pulse-width determines the value of the signal.
 
+![image](diagram.png)
+
 # Dependencies
 This library depends on the [PinChangeInterrupt](https://github.com/NicoHood/PinChangeInterrupt) library. As such, it is compatible with many arduinos (Uno, Nano, Mega, etc), digiSpark ATTiny boards, any many other boards. Please see the documentation of PinChangeInterrupt to see if your board is supported.
 
