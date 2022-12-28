@@ -1,4 +1,5 @@
-pulseInput	KEYWORD1
+PulseInput	KEYWORD1
+PulseFilter	KEYWORD1
 attachPulseInput	KEYWORD2
 detachPulseInput	KEYWORD2
 

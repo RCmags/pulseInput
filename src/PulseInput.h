@@ -1,4 +1,5 @@
 #include <PinChangeInterrupt.h>
+#include <PulseFilter.h>
 
 #ifndef PulseInput_h
 #define PulseInput_h
