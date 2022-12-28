@@ -1,29 +1,28 @@
-/* This sketch shows how to filter signals */
+/* This sketch shows how to remove noise from a signal */
 
-// ---- Create servo object to generate PWM signals ---
-#include <Servo.h>
-Servo servo;
-
-// ----------- Signal deadband and calibration --------
 #include <PulseInput.h> 
-volatile unsigned int input;        /* variable is required to capture signal */
 
 #define BAND    12                  /* Deadband. Changes in signal within this band are ignored. 
                                        Large values result in a steadier signal, at cost of lower precision */
-                               
+
+volatile unsigned int input;        /* variable is required to capture signal */
 PulseFilter <&input, BAND> filter;
 
 // Simpler form:
 //PulseFilter <&input> filter;     /* The filter defaults to a deadband of 4 if none is specified */
+
+// --------------- Generate PWM signal ----------------
+
+#define OUTPUT_PIN    3       // PWM-capable pin
+#define DUTY_CYCLE    125     // Initial PWM value
 
 // ----------------------------------------------------
 
 void setup() {
   Serial.begin(9600);
   
-  // PWM output at pin 2
-  servo.attach(2);   
-  servo.writeMicroseconds(1000); // initial signal value     
+  // generate PWM signal
+  analogWrite(OUTPUT_PIN, DUTY_CYCLE);       
   
   // assign variables to receive signals 
   attachPulseInput(8, input);
@@ -37,8 +36,8 @@ void setup() {
 
 void loop() {
   // generate variable signal:
-  int target = analogRead(A0) + 1000;   // read potentiometer from A0
-  servo.writeMicroseconds(target);
+  float target = analogRead(A0) * 255.0 / 1024.0;   // read potentiometer from A0
+  analogWrite(OUTPUT_PIN, target);
   
   // display comparison:
   Serial.print( "Raw: " ); 

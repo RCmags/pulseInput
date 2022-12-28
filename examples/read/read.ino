@@ -1,28 +1,27 @@
-/* This sketch shows how to read PWM signals for servos */
+/* This sketch shows how to read a PWM signal */
 
-// Create servo objects to generate signals
-#include <Servo.h>
-Servo servo;
-
-// 1. Each signal must be read with an volatile unsigned int
+// Each signal must be read with an volatile unsigned int
 #include <PulseInput.h>   
-volatile unsigned int input;    /* each signal requires a variable - MUST be volatile unsigned int */
+volatile unsigned int input;    /* each signal requires a variable */
 
 void setup() {
+  Serial.begin(9600);
+  
   // 2. assign variables to receive signal 
   attachPulseInput(8, input);  // pin 8 as INPUT_PULLUP
 
-  /* Generate pwm signals [in us] */
-  servo.attach(2);                 // Output at PIN 2
-  servo.writeMicroseconds(1500);   // ON time = 1500 us
-     
-  Serial.begin(9600);
+  /* Generate pwm signal */
+  constexpr int   PIN        = 3;            // PWM capable pin
+  constexpr int   ON_TIME    = 1000;         // Pulse width in microseconds
+  constexpr float DUTY_CYCLE = ON_TIME * 255.0 / 2024.0;
+  
+  analogWrite(PIN, DUTY_CYCLE); 
 
   /* To stop reading an already specified input, use this function: */
   //detachPulseInput(8);        // Stop reading input at pin 8
 }
 
 void loop() {  
-  // read signal variable
+  // read signal [microseconds]
   Serial.println(input);
 }
